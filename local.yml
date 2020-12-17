@@ -29,3 +29,10 @@
       dest: /etc/dnsmasq.conf
       owner: root
       group: root
+
+  - name: copy hostapd.conf
+    copy:
+      src: files/hostapd.conf
+      dest: /etc/hostapd/hostapd.conf
+      owner: root
+      group: root
