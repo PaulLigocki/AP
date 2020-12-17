@@ -1,2 +1,2 @@
 # AP
-ansible-pull -U https://github.com/PaulLigocki/AP.git
+ansible-pull -o -U https://github.com/PaulLigocki/AP.git
