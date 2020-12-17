@@ -13,6 +13,8 @@
       group: root
 
 
+
+
   - name: install packages
     package:
       name: "{{ item }}"
@@ -20,3 +22,10 @@
     with_items:
       - dnsmasq
       - hostapd
+
+  - name: copy dnsmasq.conf
+    copy:
+      src: files/dnsmasq.conf
+      dest: /etc/dnsmasq.conf
+      owner: root
+      group: root
