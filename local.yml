@@ -5,7 +5,15 @@
   
 
   tasks:
-  - name: install
+  -name: copy 70-persistent-net.rules
+   copy:
+    src: files/70-persistent-net.rules
+    dest: /etc/udev/rules.d/70-persistent-net.rules
+    owner: root
+    group: root
+
+
+  - name: install packages
     package:
       name: "{{ item }}"
       state: latest
