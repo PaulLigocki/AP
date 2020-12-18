@@ -1,19 +1,16 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
-  
+  become: true  
 
   tasks:
   - name: copy 70-persistent-net.rules
+    tags: ap
     copy:
       src: files/70-persistent-net.rules
       dest: /etc/udev/rules.d/70-persistent-net.rules
       owner: root
       group: root
-
-
-
 
   - name: install packages
     package:
