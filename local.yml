@@ -4,6 +4,10 @@
   become: true  
 
   tasks:
+  - name: disable ipv6
+    tags: ipv6
+    import_tasks: disableipv6.yml
+
   - name: copy 70-persistent-net.rules
     tags: ap
     copy:
@@ -13,7 +17,7 @@
       group: root
 
   - name: install packages
-    tags: ap
+    tags: test
     package:
       name: "{{ item }}"
       state: latest
@@ -22,7 +26,7 @@
       - hostapd
 
   - name: copy dnsmasq.conf
-    tags: ap
+    tags: test
     copy:
       src: files/dnsmasq.conf
       dest: /etc/dnsmasq.conf
@@ -30,7 +34,7 @@
       group: root
 
   - name: copy hostapd.conf
-    tags: ap
+    tags: test
     copy:
       src: files/hostapd.conf
       dest: /etc/hostapd/hostapd.conf
