@@ -4,11 +4,11 @@
   become: true  
   vars:
     real_wlan0_mac: "b8:27:eb:ff:ff:ff" #/etc/udev/rules.d/70-persistent-net.rules
-    virtual_ap0_mac: "b8:27:eb:12:34:55" #/etc/udev/rules.d/70-persistent-net.rules
+    virtual_ap0_mac: "b8:27:eb:ff:ff:f" #/etc/udev/rules.d/70-persistent-net.rules
     virtual_ap0_ip: "192.168.99.254"
     virtual_ap_bssid_mac: "b8:27:eb:ff:ff:00"
-    dnsmasq_dhcp_server: "192.168.99.254"
-    dnsmasq_dhcp_range: "192.168.99.1,192.168.99.250,12h"
+    dnsmasq_dhcp_server: "192.168.99.254" #/etc/dnsmasq.conf
+    dnsmasq_dhcp_range: "192.168.99.1,192.168.99.250,12h" #/etc/dnsmasq.conf
     hostapd_conf_ssid: "WirelessWiFiAp"
     hostapd_conf_wpa_passphrase: "TopSecretPassword"
     hostapd_cont_bssid: "0c:af:eb:00:11:22"
@@ -41,7 +41,7 @@
   #     group: root
 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
-    tags: ap
+    tags: template
     template:
       src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
@@ -58,13 +58,22 @@
       - dnsmasq
       - hostapd
 
-  - name: copy dnsmasq.conf
-    tags: test
-    copy:
-      src: files/dnsmasq.conf
-      dest: /etc/dnsmasq.conf
-      owner: root
-      group: root
+  # - name: copy dnsmasq.conf
+  #   tags: test
+  #   copy:
+  #     src: files/dnsmasq.conf
+  #     dest: /etc/dnsmasq.conf
+  #     owner: root
+  #     group: root
+
+    - name: Template a file to /etc/dnsmasq.conf
+      tags: template
+      template:
+        src: templates/dnsmasq.conf.j2
+        dest: /etc/dnsmasq.conf
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
 
   - name: copy hostapd.conf
     tags: test
