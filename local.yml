@@ -75,10 +75,18 @@
         group: root
         mode: u=rw,g=r,o=r
 
-  - name: copy hostapd.conf
-    tags: test
-    copy:
-      src: files/hostapd.conf
-      dest: /etc/hostapd/hostapd.conf
-      owner: root
-      group: root
+  # - name: copy hostapd.conf
+  #   tags: test
+  #   copy:
+  #     src: files/hostapd.conf
+  #     dest: /etc/hostapd/hostapd.conf
+  #     owner: root
+  #     group: root
+    - name: Template a file to /etc/hostadp/hostapd.conf
+      tags: template
+      template:
+        src: templates/hostapd.conf.j2
+        dest: /etc/hostadp/hostapd.conf
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
