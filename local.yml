@@ -13,6 +13,7 @@
       group: root
 
   - name: install packages
+    tags: ap
     package:
       name: "{{ item }}"
       state: latest
@@ -21,6 +22,7 @@
       - hostapd
 
   - name: copy dnsmasq.conf
+    tags: ap
     copy:
       src: files/dnsmasq.conf
       dest: /etc/dnsmasq.conf
@@ -28,6 +30,7 @@
       group: root
 
   - name: copy hostapd.conf
+    tags: ap
     copy:
       src: files/hostapd.conf
       dest: /etc/hostapd/hostapd.conf
