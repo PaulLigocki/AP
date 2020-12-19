@@ -3,10 +3,22 @@
   connection: local
   become: true  
   vars:
-    wlan0_mac: "b8:27:eb:ff:ff:ff"
-    ap0_mac: "b8:27:eb:ff:ff:00"
-    ap0_ip: "192.168.99.254"
-    bssid_mac: "b8:27:eb:ff:ff:00"
+    real_wlan0_mac: "b8:27:eb:ff:ff:ff" #/etc/udev/rules.d/70-persistent-net.rules
+    virtual_ap0_mac: "b8:27:eb:12:34:55" #/etc/udev/rules.d/70-persistent-net.rules
+    virtual_ap0_ip: "192.168.99.254"
+    virtual_ap_bssid_mac: "b8:27:eb:ff:ff:00"
+    dnsmasq_dhcp_server: "192.168.99.254"
+    dnsmasq_dhcp_range: "192.168.99.1,192.168.99.250,12h"
+    hostapd_conf_ssid: "WirelessWiFiAp"
+    hostapd_conf_wpa_passphrase: "TopSecretPassword"
+    hostapd_cont_bssid: "0c:af:eb:00:11:22"
+    wpa_supplicant_conf_ssid: "wifissid" #/etc/wpasupplicant/wpa_supplicant.conf
+    wpa_supplicant_conf_psk: "WiFiPasswordPassPhrase" #/etc/wpasupplicant/wpa_supplicant.conf
+    wpa_supplicant_conf_id_str: "home" #/etc/wpasupplicant/wpa_supplicant.conf
+    ap0_ip_address: "192.168.99.254" #/etc/network/interfaces
+    ap0_ip_netmask: "255.255.255.0" #/etc/network/interfaces
+
+    
     dhcp_clients: #dnsmasq static cliensts
       - mac: "b8:27:eb:ff:ff:01"
         ip: "192.168.99.1"
@@ -20,13 +32,22 @@
     tags: ipv6
     import_tasks: disableipv6.yml
 
-  - name: copy 70-persistent-net.rules
+  # - name: copy 70-persistent-net.rules
+  #   tags: ap
+  #   copy:
+  #     src: files/70-persistent-net.rules
+  #     dest: /etc/udev/rules.d/70-persistent-net.rules
+  #     owner: root
+  #     group: root
+
+  - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
     tags: ap
-    copy:
-      src: files/70-persistent-net.rules
+    template:
+      src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
       owner: root
       group: root
+      mode: u=rw,g=r,o=r
 
   - name: install packages
     tags: test
