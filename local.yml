@@ -2,6 +2,18 @@
 - hosts: localhost
   connection: local
   become: true  
+  vars:
+    wlan0_mac: "b8:27:eb:ff:ff:ff"
+    ap0_mac: "b8:27:eb:ff:ff:00"
+    ap0_ip: "192.168.99.254"
+    bssid_mac: "b8:27:eb:ff:ff:00"
+    dhcp_clients: #dnsmasq static cliensts
+      - mac: "b8:27:eb:ff:ff:01"
+        ip: "192.168.99.1"
+        name: client1
+      - mac: "b8:27:eb:ff:ff:02"
+        ip: "192.168.99.2"
+        name: client2
 
   tasks:
   - name: disable ipv6
