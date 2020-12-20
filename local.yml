@@ -101,7 +101,7 @@
   - name: Display all Guest WiFi known to the AP
     tags: test
       debug:
-        msg: "network={  "{{ item.ssid }}" "
+        msg: "{{ item.ssid }}" 
       with_items:
         - "{{ wpa_supplicant_conf_network }}"
 
