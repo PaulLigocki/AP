@@ -16,9 +16,7 @@
     wpa_supplicant_conf_psk: "WiFiPasswordPassPhrase" #/etc/wpasupplicant/wpa_supplicant.conf
     wpa_supplicant_conf_id_str: "home" #/etc/wpasupplicant/wpa_supplicant.conf & #/etc/network/interfaces
     ap0_ip_address: "192.168.99.254" #/etc/network/interfaces
-    ap0_ip_netmask: "255.255.255.0" #/etc/network/interfaces
-
-    
+    ap0_ip_netmask: "255.255.255.0" #/etc/network/interfaces    
     dhcp_clients: #dnsmasq static cliensts
       - mac: "b8:27:eb:ff:ff:01"
         ip: "192.168.99.1"
@@ -26,6 +24,15 @@
       - mac: "b8:27:eb:ff:ff:02"
         ip: "192.168.99.2"
         name: client2
+    wpa_supplicant_conf_network:
+      - ssid: "home-wifi"
+        psk: "abc123"
+        id_str: "home"
+        priority: '1'
+      - ssid: "phone-wifi"
+        psk: "abc123"
+        id_str: "phone"
+        priority: '2'
 
   tasks:
   - name: disable ipv6
@@ -87,6 +94,22 @@
     template:
       src: templates/hostapd.conf.j2
       dest: /etc/hostapd/hostapd.conf
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+
+  - name: Display all Guest WiFi known to the AP
+    tags: test
+      debug:
+        msg: "network={  "{{ item.ssid }}" "
+      with_items:
+        - "{{ wpa_supplicant_conf_network }}"
+
+  - name: Template a file to /etc/network/interfaces
+    tags: template
+    template:
+      src: templates/interfaces.j2
+      dest: /etc/network/interfaces
       owner: root
       group: root
       mode: u=rw,g=r,o=r
