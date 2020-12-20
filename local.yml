@@ -5,7 +5,7 @@
   vars:
     real_wlan0_mac: "b8:27:eb:ff:ff:ff" #/etc/udev/rules.d/70-persistent-net.rules
     virtual_ap0_mac: "b8:27:eb:ff:ff:f" #/etc/udev/rules.d/70-persistent-net.rules
-    virtual_ap0_ip: "192.168.99.254"
+    virtual_ap0_ip: "192.168.99.254" 
     virtual_ap_bssid_mac: "b8:27:eb:ff:ff:00"
     dnsmasq_dhcp_server: "192.168.99.254" #/etc/dnsmasq.conf
     dnsmasq_dhcp_range: "192.168.99.1,192.168.99.250,12h" #/etc/dnsmasq.conf
@@ -14,7 +14,7 @@
     hostapd_cont_bssid: "0c:af:eb:00:11:22"
     wpa_supplicant_conf_ssid: "wifissid" #/etc/wpasupplicant/wpa_supplicant.conf
     wpa_supplicant_conf_psk: "WiFiPasswordPassPhrase" #/etc/wpasupplicant/wpa_supplicant.conf
-    wpa_supplicant_conf_id_str: "home" #/etc/wpasupplicant/wpa_supplicant.conf
+    wpa_supplicant_conf_id_str: "home" #/etc/wpasupplicant/wpa_supplicant.conf & #/etc/network/interfaces
     ap0_ip_address: "192.168.99.254" #/etc/network/interfaces
     ap0_ip_netmask: "255.255.255.0" #/etc/network/interfaces
 
@@ -66,27 +66,27 @@
   #     owner: root
   #     group: root
 
-    - name: Template a file to /etc/dnsmasq.conf
-      tags: template
-      template:
-        src: templates/dnsmasq.conf.j2
-        dest: /etc/dnsmasq.conf
-        owner: root
-        group: root
-        mode: u=rw,g=r,o=r
+  - name: "Template a file to /etc/dnsmasq.conf"
+    tags: template
+    template:
+      src: templates/dnsmasq.conf.j2
+      dest: /etc/dnsmasq.conf
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
 
-  # - name: copy hostapd.conf
-  #   tags: test
-  #   copy:
-  #     src: files/hostapd.conf
-  #     dest: /etc/hostapd/hostapd.conf
-  #     owner: root
-  #     group: root
-    - name: Template a file to /etc/hostadp/hostapd.conf
-      tags: template
-      template:
-        src: templates/hostapd.conf.j2
-        dest: /etc/hostadp/hostapd.conf
-        owner: root
-        group: root
-        mode: u=rw,g=r,o=r
+# - name: copy hostapd.conf
+#   tags: test
+#   copy:
+#     src: files/hostapd.conf
+#     dest: /etc/hostapd/hostapd.conf
+#     owner: root
+#     group: root
+  - name: Template a file to /etc/hostapd/hostapd.conf
+    tags: template
+    template:
+      src: templates/hostapd.conf.j2
+      dest: /etc/hostapd/hostapd.conf
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
