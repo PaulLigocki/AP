@@ -40,11 +40,11 @@
     import_tasks: disableipv6.yml
 
   - name: Stop Bluetooth Service bluetooth.service
-  tags: service, bluetooth
-  service:
-    name: bluetooth.service
-    enabled: false
-    state: stopped
+    tags: service, bluetooth
+    service:
+      name: bluetooth.service
+      enabled: false
+      state: stopped
 
   - name: Stop Bluetooth Service hciuart.service 
     tags: service, bluetooth
