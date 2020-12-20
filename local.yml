@@ -113,3 +113,12 @@
       owner: root
       group: root
       mode: u=rw,g=r,o=r
+
+  - name: Template a file to /usr/local/bin/fix-ap-wifi.sh
+    tags: script
+    template:
+      src: templates/fix-ap-wifi.sh.j2
+      dest: /usr/local/bin/fix-ap-wifi.sh
+      owner: root
+      group: root
+      mode: u=rwx,g=rx,o=rx
