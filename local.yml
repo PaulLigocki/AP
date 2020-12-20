@@ -100,10 +100,10 @@
 
   - name: Display all Guest WiFi known to the AP
     tags: test
-      debug:
-        msg: "{{ item.ssid }}" 
-      with_items:
-        - "{{ wpa_supplicant_conf_network }}"
+    debug:
+      msg: "{{ item.ssid }}" 
+    with_items:
+      - "{{ wpa_supplicant_conf_network }}"
 
   - name: Template a file to /etc/network/interfaces
     tags: template
