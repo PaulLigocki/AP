@@ -39,6 +39,20 @@
     tags: ipv6
     import_tasks: disableipv6.yml
 
+  - name: Stop Bluetooth Service bluetooth.service
+  tags: service, bluetooth
+  service:
+    name: bluetooth.service
+    enabled: false
+    state: stopped
+
+  - name: Stop Bluetooth Service hciuart.service 
+    tags: service, bluetooth
+    service:
+      name: hciuart.service
+      enabled: false
+      state: stopped
+
   # - name: copy 70-persistent-net.rules
   #   tags: ap
   #   copy:
