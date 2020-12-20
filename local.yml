@@ -98,6 +98,16 @@
       group: root
       mode: u=rw,g=r,o=r
 
+  - name: Backup /etc/wpa_supplicant/wpa_supplicant.conf In case of Could not communicate with wpa_supplicant
+    tags: backup
+    copy:
+      remote_src: yes
+      src: /etc/wpa_supplicant/wpa_supplicant.conf
+      dest: /etc/wpa_supplicant/wpa_supplicant.conf.back
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+
   - name: Display all Guest WiFi known to the AP
     tags: test
     debug:
