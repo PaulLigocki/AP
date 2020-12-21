@@ -1,0 +1,13 @@
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+country=AU
+update_config=1
+
+{% for wpa_supplicant_conf_network in wpa_supplicant_conf_networks %}
+network={
+    ssid="{{ wpa_supplicant_conf_network.ssid }}"
+    psk="{{ wpa_supplicant_conf_network.psk }}"
+    id_str="{{ wpa_supplicant_conf_network.id_str }}"
+}
+{% endfor %}
+
+
