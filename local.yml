@@ -24,7 +24,7 @@
       - mac: "b8:27:eb:ff:ff:02"
         ip: "192.168.99.2"
         name: client2
-    wpa_supplicant_conf_network:
+    wpa_supplicant_conf_networks:
       - ssid: "home-wifi"
         psk: "abc123"
         id_str: "home"
@@ -46,7 +46,7 @@
     debug:
       msg: "ssid {{ item.ssid }}"
     with_items:
-      - "{{ wpa_supplicant_conf_network }}"
+      - "{{ wpa_supplicant_conf_networks }}"
 
   - name: disable ipv6
     tags: ipv6
