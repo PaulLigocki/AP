@@ -56,6 +56,7 @@
       owner: root
       group: root
       mode: u=rw #,g=r,o=r
+      backup: yes
 
   - name: disable ipv6
     tags: ipv6
@@ -149,7 +150,7 @@
     debug:
       msg: "{{ item.ssid }}" 
     with_items:
-      - "{{ wpa_supplicant_conf_network }}"
+      - "{{ wpa_supplicant_conf_networks }}"
 
   - name: Template a file to /etc/network/interfaces
     tags: template
