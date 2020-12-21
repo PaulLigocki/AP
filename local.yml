@@ -35,6 +35,11 @@
         priority: '2'
 
   tasks:
+
+  - name: Include vars file
+      include_vars:
+        file: /home/pi/vars.yml
+
   - name: disable ipv6
     tags: ipv6
     import_tasks: disableipv6.yml
