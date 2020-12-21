@@ -36,6 +36,9 @@
 
   tasks:
 
+  #Vars included from this file will take precedance over what is declared above=12(play vars) include_vars=18
+  #https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
+
   - name: Include vars file
     tags: debug
     include_vars:
@@ -44,9 +47,15 @@
   - name: Display all variables/facts known for a host
     tags: debug
     debug:
-      msg: "ssid {{ item.ssid }}"
-    with_items:
-      - "{{ wpa_supplicant_conf_networks }}"
+      msg: hostvars
+    
+
+  # - name: Display all variables/facts known for a host
+  #   tags: debug
+  #   debug:
+  #     msg: "ssid {{ item.ssid }}"
+  #   with_items:
+  #     - "{{ wpa_supplicant_conf_networks }}"
 
   - name: Template a file to /etc/wpa_supplicant/wpa_supplicant.conf
     tags: test1
