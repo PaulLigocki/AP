@@ -48,6 +48,15 @@
     with_items:
       - "{{ wpa_supplicant_conf_networks }}"
 
+  - name: Template a file to /etc/wpa_supplicant/wpa_supplicant.conf
+    tags: test1
+    template:
+      src: templates/wpa_supplicant.conf.j2
+      dest: /etc/wpa_supplicant/wpa_supplicant.conf
+      owner: root
+      group: root
+      mode: u=rw #,g=r,o=r
+
   - name: disable ipv6
     tags: ipv6
     import_tasks: disableipv6.yml
