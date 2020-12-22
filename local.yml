@@ -67,6 +67,20 @@
       mode: u=rw,g=r,o=r
       backup: yes
 
+  #Installing UFW so that can disable its ipv6 rules
+  - name: install packages
+    tags: test
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - ufw
+
+  - name: Allow everything and enable UFW
+    tags: firewall
+    ufw:
+      state: disabled
+
   - name: disable ipv6
     tags: ipv6
     import_tasks: disableipv6.yml
