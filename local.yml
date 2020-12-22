@@ -47,7 +47,7 @@
   - name: Display all variables/facts known for a host
     tags: debug
     debug:
-      msg: vars
+      var: vars
     
 
   # - name: Display all variables/facts known for a host
