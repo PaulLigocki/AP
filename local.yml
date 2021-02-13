@@ -40,12 +40,12 @@
   #https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
   - name: Include vars file
-    tags: debug
+    tags: safe
     include_vars:
       file: /home/pi/vars.yml
 
   - name: Display all variables/facts known for a host
-    tags: debug
+    tags: safe
     debug:
       var: vars
     
@@ -58,7 +58,7 @@
   #     - "{{ wpa_supplicant_conf_networks }}"
 
   - name: Template a file to /etc/wpa_supplicant/wpa_supplicant.conf
-    tags: test1
+    tags: safe
     template:
       src: templates/wpa_supplicant.conf.j2
       dest: /etc/wpa_supplicant/wpa_supplicant.conf
@@ -69,31 +69,31 @@
 
   #Installing UFW so that can disable its ipv6 rules
   - name: install packages
-    tags: test
+    tags: safe
     package:
       name: "{{ item }}"
       state: latest
     with_items:
       - ufw
 
-  - name: Allow everything and enable UFW
-    tags: firewall
+  - name: Allow everything and enabledisable UFW
+    tags: safe
     ufw:
       state: disabled
 
   - name: disable ipv6
-    tags: ipv6
+    tags: safe, ipv6
     import_tasks: disableipv6.yml
 
   - name: Stop Bluetooth Service bluetooth.service
-    tags: service, bluetooth
+    tags: safe, service, bluetooth
     service:
       name: bluetooth.service
       enabled: false
       state: stopped
 
   - name: Stop Bluetooth Service hciuart.service 
-    tags: service, bluetooth
+    tags: safe, service, bluetooth
     service:
       name: hciuart.service
       enabled: false
@@ -108,7 +108,7 @@
   #     group: root
 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
-    tags: template
+    tags: test
     template:
       src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
@@ -134,7 +134,7 @@
   #     group: root
 
   - name: "Template a file to /etc/dnsmasq.conf"
-    tags: template
+    tags: test
     template:
       src: templates/dnsmasq.conf.j2
       dest: /etc/dnsmasq.conf
@@ -150,7 +150,7 @@
 #     owner: root
 #     group: root
   - name: Template a file to /etc/hostapd/hostapd.conf
-    tags: template
+    tags: test
     template:
       src: templates/hostapd.conf.j2
       dest: /etc/hostapd/hostapd.conf
@@ -159,7 +159,7 @@
       mode: u=rw,g=r,o=r
 
   - name: Backup /etc/wpa_supplicant/wpa_supplicant.conf In case of Could not communicate with wpa_supplicant
-    tags: backup
+    tags: test
     copy:
       remote_src: yes
       src: /etc/wpa_supplicant/wpa_supplicant.conf
@@ -176,7 +176,7 @@
       - "{{ wpa_supplicant_conf_networks }}"
 
   - name: Template a file to /etc/network/interfaces
-    tags: template
+    tags: test
     template:
       src: templates/interfaces.j2
       dest: /etc/network/interfaces
@@ -185,7 +185,7 @@
       mode: u=rw,g=r,o=r
 
   - name: Template a file to /usr/local/bin/fix-ap-wifi.sh
-    tags: script
+    tags: test
     template:
       src: templates/fix-ap-wifi.sh.j2
       dest: /usr/local/bin/fix-ap-wifi.sh
