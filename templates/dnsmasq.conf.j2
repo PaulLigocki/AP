@@ -683,7 +683,7 @@ dhcp-mac=set:client_is_a_pi,B8:27:EB:*:*:*
 dhcp-reply-delay=tag:client_is_a_pi,2
 
 interface=lo,ap0
-no-dhcp-interface=lo,wlan0
+no-dhcp-interface=lo,wlan0,eth0
 bind-interfaces
 server={{ dnsmasq_dhcp_server }}
 domain-needed
