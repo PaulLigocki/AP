@@ -11,7 +11,7 @@
     dnsmasq_dhcp_range: "192.168.99.1,192.168.99.250,12h" #/etc/dnsmasq.conf
     hostapd_conf_ssid: "WirelessWiFiAp"
     hostapd_conf_wpa_passphrase: "TopSecretPassword"
-    hostapd_cont_bssid: "0c:af:eb:00:11:22"
+    hostapd_conf_bssid: "0c:af:eb:00:11:22"
     wpa_supplicant_conf_ssid: "wifissid" #/etc/wpasupplicant/wpa_supplicant.conf
     wpa_supplicant_conf_psk: "WiFiPasswordPassPhrase" #/etc/wpasupplicant/wpa_supplicant.conf
     wpa_supplicant_conf_id_str: "home" #/etc/wpasupplicant/wpa_supplicant.conf & #/etc/network/interfaces
