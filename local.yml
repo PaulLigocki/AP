@@ -59,7 +59,7 @@
 
   #Step 0.0
   - name: setup wifi client wpa_supplicant etc
-    tags: safe, wifi-client
+    tags: safe, wifi-client, optional
     import_tasks: wifi-client.yml
 
   #Installing UFW so that can disable its ipv6 rules
@@ -77,11 +77,11 @@
       state: disabled
 
   - name: disable ipv6
-    tags: safe, ipv6
+    tags: safe, ipv6, optional
     import_tasks: ipv6.yml
   
   - name: disable bluetooth
-    tags: safe, bluetooth
+    tags: safe, bluetooth, optional
     import_tasks: bluetooth.yml  
 
 #Step 1.0 Create ap0 Interfce 
