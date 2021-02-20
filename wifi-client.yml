@@ -9,15 +9,15 @@
     mode: u=rw,g=r,o=r
     backup: yes
 
-- name: Backup /etc/wpa_supplicant/wpa_supplicant.conf In case of Could not communicate with wpa_supplicant
-  tags: test
-  copy:
-    remote_src: yes
-    src: /etc/wpa_supplicant/wpa_supplicant.conf
-    dest: /etc/wpa_supplicant/wpa_supplicant.conf.back
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
+# - name: Backup /etc/wpa_supplicant/wpa_supplicant.conf In case of Could not communicate with wpa_supplicant
+#   tags: test
+#   copy:
+#     remote_src: yes
+#     src: /etc/wpa_supplicant/wpa_supplicant.conf
+#     dest: /etc/wpa_supplicant/wpa_supplicant.conf.back
+#     owner: root
+#     group: root
+#     mode: u=rw,g=r,o=r
 
 - name: Display all Guest WiFi known to the AP
   tags: test
