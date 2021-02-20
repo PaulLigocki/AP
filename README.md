@@ -1,5 +1,7 @@
 # AP
-ansible-pull -o -U https://github.com/PaulLigocki/AP.git
+ansible-pull -o -U https://github.com/PaulLigocki/AP.git --tags safe
+
+ansible-palybook local.yml --tags safe
 
 
 
