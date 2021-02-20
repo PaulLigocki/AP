@@ -1,10 +1,10 @@
 ---
 - name: Stop Bluetooth Service bluetooth.service
-    tags: safe, service, bluetooth
-    service:
-      name: bluetooth.service
-      enabled: false
-      state: stopped
+  tags: safe, service, bluetooth
+  service:
+    name: bluetooth.service
+    enabled: false
+    state: stopped
 
 - name: Stop Bluetooth Service hciuart.service 
   tags: safe, service, bluetooth
