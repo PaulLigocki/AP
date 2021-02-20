@@ -11,6 +11,7 @@ auto ap0
 auto wlan0
 
 allow-hotplug ap0
+
 iface ap0 inet static
     address {{ ap0_ip_address }}
     netmask {{ ap0_ip_netmask }}
@@ -21,9 +22,6 @@ allow-hotplug wlan0
 iface wlan0 inet manual
     wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 
-iface {{ wpa_supplicant_conf_id_str }} inet dhcp
-iface home inet dhcp
- mobile inet dhcp
 
 {% for wpa_supplicant_conf_network in wpa_supplicant_conf_networks %}
 iface {{ wpa_supplicant_conf_network.id_str }} inet dhcp
