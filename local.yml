@@ -98,7 +98,7 @@
   #     group: root
 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
-    tags: test
+    tags: safe
     template:
       src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
