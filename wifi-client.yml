@@ -19,9 +19,9 @@
     group: root
     mode: u=rw,g=r,o=r
 
-  - name: Display all Guest WiFi known to the AP
-    tags: test
-    debug:
-      msg: "{{ item.ssid }}" 
-    with_items:
-      - "{{ wpa_supplicant_conf_networks }}"
+- name: Display all Guest WiFi known to the AP
+  tags: test
+  debug:
+    msg: "{{ item.ssid }}" 
+  with_items:
+    - "{{ wpa_supplicant_conf_networks }}"
