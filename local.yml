@@ -110,27 +110,12 @@
     with_items:
       - hostapd
 
+  #Step 1.1 Setup dnsmasq
   - name: setup dnsmasq
     tags: safe, dnsmasq
     import_tasks: dnsmasq.yml
 
-  # - name: copy dnsmasq.conf
-  #   tags: test
-  #   copy:
-  #     src: files/dnsmasq.conf
-  #     dest: /etc/dnsmasq.conf
-  #     owner: root
-  #     group: root
 
-  
-
-# - name: copy hostapd.conf
-#   tags: test
-#   copy:
-#     src: files/hostapd.conf
-#     dest: /etc/hostapd/hostapd.conf
-#     owner: root
-#     group: root
   - name: Template a file to /etc/hostapd/hostapd.conf
     tags: test
     template:
@@ -174,3 +159,19 @@
       owner: root
       group: root
       mode: u=rwx,g=rx,o=rx
+
+# - name: copy dnsmasq.conf
+#   tags: test
+#   copy:
+#     src: files/dnsmasq.conf
+#     dest: /etc/dnsmasq.conf
+#     owner: root
+#     group: root  
+
+# - name: copy hostapd.conf
+#   tags: test
+#   copy:
+#     src: files/hostapd.conf
+#     dest: /etc/hostapd/hostapd.conf
+#     owner: root
+#     group: root
