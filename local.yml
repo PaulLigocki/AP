@@ -71,8 +71,8 @@
     with_items:
       - ufw
 
-  - name: Allow everything and enabledisable UFW
-    tags: safe
+  - name: Allow everything and disable UFW
+    tags: safe, firewall, ufw
     ufw:
       state: disabled
 
@@ -83,14 +83,6 @@
   - name: disable bluetooth
     tags: safe, bluetooth
     import_tasks: bluetooth.yml  
-
-  # - name: copy 70-persistent-net.rules
-  #   tags: ap
-  #   copy:
-  #     src: files/70-persistent-net.rules
-  #     dest: /etc/udev/rules.d/70-persistent-net.rules
-  #     owner: root
-  #     group: root
 
 #Step 1.0 Create ap0 Interfce 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
@@ -173,5 +165,12 @@
 #   copy:
 #     src: files/hostapd.conf
 #     dest: /etc/hostapd/hostapd.conf
+#     owner: root
+#     group: root
+# - name: copy 70-persistent-net.rules
+#   tags: ap
+#   copy:
+#     src: files/70-persistent-net.rules
+#     dest: /etc/udev/rules.d/70-persistent-net.rules
 #     owner: root
 #     group: root

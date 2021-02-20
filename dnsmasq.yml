@@ -8,7 +8,7 @@
     - dnsmasq
 
 - name: "Template a file to /etc/dnsmasq.conf"
-  tags: test, dnsmasq
+  tags: safe, dnsmasq
   template:
     src: templates/dnsmasq.conf.j2
     dest: /etc/dnsmasq.conf
