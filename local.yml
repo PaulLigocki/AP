@@ -94,19 +94,20 @@
       group: root
       mode: u=rw,g=r,o=r
 
-  - name: install packages
-    tags: test
-    package:
-      name: "{{ item }}"
-      state: latest
-    with_items:
-      - hostapd
-
-  #Step 1.1 Setup dnsmasq
+#Step 1.1 Setup dnsmasq
   - name: setup dnsmasq
     tags: safe, dnsmasq
     import_tasks: dnsmasq.yml
 
+#Step 1.2 setup hostapd
+
+  - name: install packages
+  tags: test
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - hostapd
 
   - name: Template a file to /etc/hostapd/hostapd.conf
     tags: test
@@ -115,24 +116,7 @@
       dest: /etc/hostapd/hostapd.conf
       owner: root
       group: root
-      mode: u=rw,g=r,o=r
-
-  - name: Backup /etc/wpa_supplicant/wpa_supplicant.conf In case of Could not communicate with wpa_supplicant
-    tags: test
-    copy:
-      remote_src: yes
-      src: /etc/wpa_supplicant/wpa_supplicant.conf
-      dest: /etc/wpa_supplicant/wpa_supplicant.conf.back
-      owner: root
-      group: root
-      mode: u=rw,g=r,o=r
-
-  - name: Display all Guest WiFi known to the AP
-    tags: test
-    debug:
-      msg: "{{ item.ssid }}" 
-    with_items:
-      - "{{ wpa_supplicant_conf_networks }}"
+      mode: u=rw,g=r,o=r  
 
   - name: Template a file to /etc/network/interfaces
     tags: test
