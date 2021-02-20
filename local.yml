@@ -97,6 +97,7 @@
   #     owner: root
   #     group: root
 
+#Step 1.0 Create ap0 Interfce 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
     tags: safe
     template:
@@ -112,8 +113,11 @@
       name: "{{ item }}"
       state: latest
     with_items:
-      - dnsmasq
       - hostapd
+
+  - name: setup dnsmasq
+    tags: safe, dnsmasq
+    import_tasks: dnsmasq.yml
 
   # - name: copy dnsmasq.conf
   #   tags: test
@@ -123,14 +127,7 @@
   #     owner: root
   #     group: root
 
-  - name: "Template a file to /etc/dnsmasq.conf"
-    tags: test
-    template:
-      src: templates/dnsmasq.conf.j2
-      dest: /etc/dnsmasq.conf
-      owner: root
-      group: root
-      mode: u=rw,g=r,o=r
+  
 
 # - name: copy hostapd.conf
 #   tags: test
