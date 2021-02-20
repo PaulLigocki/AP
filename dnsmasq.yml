@@ -1,6 +1,6 @@
 ---
 - name: install packages
-  tags: test
+  tags: safe, dnsmasq
   package:
     name: "{{ item }}"
     state: latest
@@ -8,7 +8,7 @@
     - dnsmasq
 
 - name: "Template a file to /etc/dnsmasq.conf"
-  tags: test
+  tags: test, dnsmasq
   template:
     src: templates/dnsmasq.conf.j2
     dest: /etc/dnsmasq.conf
