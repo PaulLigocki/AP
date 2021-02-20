@@ -102,12 +102,12 @@
 #Step 1.2 setup hostapd
 
   - name: install packages
-  tags: test
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - hostapd
+    tags: test
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - hostapd
 
   - name: Template a file to /etc/hostapd/hostapd.conf
     tags: test
