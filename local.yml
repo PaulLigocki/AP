@@ -102,7 +102,7 @@
 #Step 1.2 setup hostapd
 
   - name: install packages
-    tags: test
+    tags: test, hostapd
     package:
       name: "{{ item }}"
       state: latest
@@ -110,7 +110,7 @@
       - hostapd
 
   - name: Template a file to /etc/hostapd/hostapd.conf
-    tags: test
+    tags: test, hostapd
     template:
       src: templates/hostapd.conf.j2
       dest: /etc/hostapd/hostapd.conf
