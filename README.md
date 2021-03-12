@@ -3,7 +3,8 @@ ansible-pull -o -U https://github.com/PaulLigocki/AP.git --tags safe
 
 ansible-palybook local.yml --tags safe
 
-
+#Testing
+cd ~/AP/ && git pull && ansible-playbook local.yml --tags safe,hostapd,interfaces
 
 # Notes
 /etc/udev/rules.d/70-persistent-net.rules
