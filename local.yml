@@ -140,7 +140,7 @@
       mode: u=rwx,g=rx,o=rx
   
 #Step 1.4.b Deploy Fix Script Cron Job   
-  - name: Create a Cron entry "@reboot /usr/local/bin/fix-ap-wifi.sh"
+  - name: "Create a Cron entry @reboot /usr/local/bin/fix-ap-wifi.sh"
     ansible.builtin.cron:
       name: "Run Fix Script After Reboots"
       special_time: reboot
