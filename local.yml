@@ -59,7 +59,7 @@
 
   #Step 0.0
   - name: setup wifi client wpa_supplicant etc
-    tags: safe, wifi-client, optional, wpa_supplicant
+    tags: safe,wifi-client,optional,wpa_supplicant
     import_tasks: wifi-client.yml
 
   #Installing UFW so that can disable its ipv6 rules
