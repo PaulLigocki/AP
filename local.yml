@@ -64,7 +64,7 @@
 
   #Installing UFW so that can disable its ipv6 rules
   - name: install packages
-    tags: safe, ufw
+    tags: safe,ufw
     package:
       name: "{{ item }}"
       state: latest
