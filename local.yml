@@ -141,6 +141,7 @@
   
 #Step 1.4.b Deploy Fix Script Cron Job   
   - name: "Create a Cron entry @reboot /usr/local/bin/fix-ap-wifi.sh"
+    tags: safe,fix_script
     cron:
       name: "Run Fix Script After Reboots"
       special_time: reboot
