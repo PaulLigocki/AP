@@ -1,13 +1,13 @@
 ---
-- name: install packages
-  tags: safe, dnsmasq
+- name: Install dnsmasq package | DHCP and DNS Server
+  tags: safe,dnsmasq
   package:
     name: "{{ item }}"
     state: latest
   with_items:
     - dnsmasq
 
-- name: "Template a file to /etc/dnsmasq.conf"
+- name: "Configure DHCP & DNS Settings | Template a file to /etc/dnsmasq.conf"
   tags: safe, dnsmasq
   template:
     src: templates/dnsmasq.conf.j2

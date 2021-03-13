@@ -94,7 +94,7 @@
       group: root
       mode: u=rw,g=r,o=r
 
-#Step 1.1 Setup dnsmasq
+#Step 1.1 Setup dnsmasq DHCP & DNS Server
   - name: setup dnsmasq
     tags: safe, dnsmasq
     import_tasks: dnsmasq.yml
