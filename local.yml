@@ -72,16 +72,16 @@
       - ufw
 
   - name: Allow everything and disable UFW
-    tags: safe, firewall, ufw
+    tags: safe,firewall,ufw
     ufw:
       state: disabled
 
   - name: disable ipv6
-    tags: safe, ipv6, optional, disable_ipv6
+    tags: safe,optional,disable_ipv6
     import_tasks: ipv6.yml
   
   - name: disable bluetooth
-    tags: safe, bluetooth, optional, disable_bluetooth
+    tags: safe,optional,disable_bluetooth
     import_tasks: bluetooth.yml  
 
 #Step 1.0 Create ap0 Interfce 
