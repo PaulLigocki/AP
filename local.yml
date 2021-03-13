@@ -86,7 +86,7 @@
 
 #Step 1.0 Create ap0 Interfce 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
-    tags: safe, udev_rules
+    tags: safe,udev_rules
     template:
       src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
