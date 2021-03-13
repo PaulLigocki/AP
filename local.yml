@@ -101,16 +101,16 @@
 
 #Step 1.2 setup hostapd
 
-  - name: install packages
-    tags: test, hostapd
+  - name: Setup AccessPoint | Install hostapd package
+    tags: safe,hostapd
     package:
       name: "{{ item }}"
       state: latest
     with_items:
       - hostapd
 
-  - name: Template a file to /etc/hostapd/hostapd.conf
-    tags: test, hostapd
+  - name: Setup AccessPoint | Template a file to /etc/hostapd/hostapd.conf
+    tags: safe,hostapd
     template:
       src: templates/hostapd.conf.j2
       dest: /etc/hostapd/hostapd.conf
