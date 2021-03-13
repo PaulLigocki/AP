@@ -40,12 +40,12 @@
   #https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
   - name: Include vars file
-    tags: safe
+    tags: safe,vars
     include_vars:
       file: /home/pi/vars.yml
 
   - name: Display all variables/facts known for a host
-    tags: safe
+    tags: safe,vars
     debug:
       var: vars
     
@@ -59,12 +59,12 @@
 
   #Step 0.0
   - name: setup wifi client wpa_supplicant etc
-    tags: safe, wifi-client, optional
+    tags: safe, wifi-client, optional, wpa_supplicant
     import_tasks: wifi-client.yml
 
   #Installing UFW so that can disable its ipv6 rules
   - name: install packages
-    tags: safe
+    tags: safe, ufw
     package:
       name: "{{ item }}"
       state: latest
@@ -77,16 +77,16 @@
       state: disabled
 
   - name: disable ipv6
-    tags: safe, ipv6, optional
+    tags: safe, ipv6, optional, disable_ipv6
     import_tasks: ipv6.yml
   
   - name: disable bluetooth
-    tags: safe, bluetooth, optional
+    tags: safe, bluetooth, optional, disable_bluetooth
     import_tasks: bluetooth.yml  
 
 #Step 1.0 Create ap0 Interfce 
   - name: Template a file to /etc/udev/rules.d/70-persistent-net.rules
-    tags: safe
+    tags: safe, udev_rules
     template:
       src: templates/70-persistent-net.rules.j2
       dest: /etc/udev/rules.d/70-persistent-net.rules
@@ -131,7 +131,7 @@
 
 #Step 1.4 Deploy Fix Script
   - name: Template a file to /usr/local/bin/fix-ap-wifi.sh
-    tags: safe
+    tags: safe, fix_script
     template:
       src: templates/fix-ap-wifi.sh.j2
       dest: /usr/local/bin/fix-ap-wifi.sh
