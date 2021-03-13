@@ -4,6 +4,6 @@ if cd /home/pi/AP/; then git pull; else git clone https://github.com/PaulLigocki
 echo 'Setting owner on Repo'
 chown pi:pi /home/pi/AP
 echo 'Attempting to run playbook'
-cd /home/pi/AP/ && git pull && ansible-playbook local.yml --tags vars,wpa_supplicant,ufw,disable_ipv6,disable_bluetooth,udev_rules,dnsmasq,fix_script
+cd /home/pi/AP/ && git pull && ansible-playbook local.yml --tags vars,wpa_supplicant,ufw,disable_ipv6,disable_bluetooth,udev_rules,dnsmasq,fix_script --skip-tags unsafe
 #,hostapd,interfaces
 ip a
